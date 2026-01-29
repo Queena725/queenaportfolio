@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1"
+    />
+    <title>Periodical Logo</title>
+
+    <!-- ✅ Practice of Love와 같은 CSS 재사용 -->
+    <link rel="stylesheet" href="atmos.css" />
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
+  </head>
+
+  <body>
+    <main class="book-layout">
+      <!-- LEFT: fixed text -->
+      <aside class="artwork-info">
+        <nav class="artwork-nav">
+          <a href="index.html" class="nav-index">INDEX</a>
+          <a href="next-project.html" class="nav-next">NEXT &gt;</a>
+        </nav>
+
+        <p class="nav-about">(ABOUT)</p>
+
+        <h1 class="artwork-title">Periodical Logo</h1>
+        <p class="artwork-date">2025</p>
+        <p class="artwork-category">
+          Logo Design, JavaScript, Real-Time Data, API Integration
+        </p>
+
+        <p class="artwork-description">
+          This project reimagines the Atmos logo as a living system shaped by
+          real-time environmental news. Using the Real-Time News Data API, the
+          logo reacts to positive and negative climate narratives, expanding
+          with language of growth and contracting in response to crisis—
+          reflecting the ongoing relationship between people and the
+          environment.
+        </p>
+      </aside>
+
+      <!-- RIGHT: scrollable images -->
+      <section class="project-images">
+        <!-- ✅ Overlay image pattern -->
+        <div class="image-overlay">
+          <!-- Main desktop image -->
+          <img
+            class="image-main"
+            src="images/atmos/desktop.png"
+            alt="Periodical Logo website on desktop"
+          />
+
+          <!-- Overlapping logo / search system image -->
+          <img
+            class="image-overlay-small"
+            src="images/atmos/atmos logo search.png"
+            alt="Periodical Logo system and search interface"
+          />
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

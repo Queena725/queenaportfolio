@@ -54,18 +54,18 @@ let currentIndex = 1;
 const viewer = document.getElementById("bookViewer");
 const img = document.getElementById("bookImage");
 
-/* ✅ 핵심: 이미지 + cover/spread 상태를 항상 여기서만 처리 */
+/* 핵심: 이미지 + cover/spread 상태를 항상 여기서만 처리 */
 function updateImage() {
   img.src = images[currentIndex];
 
   if (currentIndex === 0) {
     img.classList.add("is-cover"); // ✅ cover
   } else {
-    img.classList.remove("is-cover"); // ✅ spread
+    img.classList.remove("is-cover"); //  spread
   }
 }
 
-/* ✅ 처음 로드 */
+
 updateImage();
 
 function goNext() {
