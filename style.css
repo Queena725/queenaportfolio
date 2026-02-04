@@ -1,0 +1,158 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+      font-family: Inter, sans-serif;
+  color: #000;
+  font-size: 14px;
+  font-weight: 350;
+  line-height: 18.2px;
+  letter-spacing: -0.15px;
+  text-decoration: none;;
+}
+
+/* 텍스트 위치 */
+.top-left {
+  position: fixed;
+  top: 24px;
+  left: 24px;
+}
+
+.top-right {
+  position: fixed;
+  top: 24px;
+  right: 24px;
+}
+
+.bottom-left {
+  position: fixed;
+  bottom: 24px;
+  left: 24px;
+}
+
+.bottom-left p {
+  margin: 4px 0;
+}
+
+.bottom-right {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+}
+
+
+.link {
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.link:hover {
+  opacity: 0.6;
+}
+
+/* 중앙 정렬 */
+.center {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* 점 기본 */
+.dot {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 10px;
+  height: 10px;
+  background: black;
+  border-radius: 50%;
+  transform-origin: 0 0;
+  cursor: pointer;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* 회전하는 큰 원 */
+.orbit {
+  position: relative;
+  width: 560px;
+  height: 560px;
+  animation: spin 90s linear infinite;
+}
+
+/* hover 시 자신 강조 */
+.dot:hover {
+  transform: scale(1.8);
+}
+
+/* 다른 점 흐리게 */
+.orbit.dim .dot {
+  opacity: 0.15;
+}
+
+.orbit.dim .dot.active {
+  opacity: 1;
+}
+.hover-image {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 60vw;
+  max-width: 720px;
+  height: 40vw;
+  max-height: 480px;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: 1;
+
+  /* ✅ 클릭 막기 */
+  pointer-events: none;
+}
+
+.hover-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+
+.dot:nth-child(1) {
+  transform: rotate(0deg) translateX(280px);
+}
+.dot:nth-child(2) {
+  transform: rotate(40deg) translateX(280px);
+}
+.dot:nth-child(3) {
+  transform: rotate(80deg) translateX(280px);
+}
+.dot:nth-child(4) {
+  transform: rotate(120deg) translateX(280px);
+}
+.dot:nth-child(5) {
+  transform: rotate(160deg) translateX(280px);
+}
+.dot:nth-child(6) {
+  transform: rotate(200deg) translateX(280px);
+}
+.dot:nth-child(7) {
+  transform: rotate(240deg) translateX(280px);
+}
+.dot:nth-child(8) {
+  transform: rotate(280deg) translateX(280px);
+}
+.dot:nth-child(9) {
+  transform: rotate(320deg) translateX(280px);
+}
+
+/* 시계 방향 회전 */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

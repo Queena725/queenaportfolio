@@ -4,10 +4,11 @@ document.addEventListener("DOMContentLoaded", () => {
     "images/fnf/spread2.jpg",
     "images/fnf/spread3.jpg",
     "images/fnf/spread4.jpg",
+    "images/fnf/fnf_background.jpg"
 
   ];
 
-  let currentIndex = 0; // ✅ 첫 장부터 바로 시작
+  let currentIndex = 0; 
 
   const viewer = document.getElementById("bookViewer");
   const img = document.getElementById("bookImage");

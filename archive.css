@@ -5,86 +5,97 @@
 }
 
 body {
-  font-family: Inter, Helvetica, Arial, sans-serif;
+   font-family: Inter, sans-serif;
   background: #fff;
   color: #000;
+  font-size: 0.875rem;
+      font-weight: 339;
+      line-height: 1.3;
 }
+
+/* =========================
+   Header
+========================= */
+
 .archive-header {
+  position: fixed;
+  top: 24px;
+  left: 24px;
+  right: 24px;
+
   display: flex;
   justify-content: space-between;
-  align-items: baseline; /* ✅ 텍스트 기준선 맞춤 */
-  padding: 24px 32px;
+  align-items: center;
+
+  z-index: 1000;
 }
 
-/* Archive 타이틀 */
+/* Archive title */
 .archive-header h1 {
   margin: 0;
-
-  color: #000;
-  font-family: Inter, sans-serif;
   font-size: 14px;
-  font-weight: 300;
+  color: #000;
+  font-weight: 350;
   line-height: 18.2px;
   letter-spacing: -0.15px;
+  text-decoration: none;
 }
 
-/* 닫기 버튼 */
+/* Close button */
 .close-btn {
+  font-size: 20px;
+  text-decoration: none;
+  color: #000;
+  cursor: pointer;
+  line-height: 1;
+
   background: none;
   border: none;
   padding: 0;
-  cursor: pointer;
 
   display: flex;
-  align-items: center; /* ✅ 아이콘 자체 중앙 */
+  align-items: center;
 }
 
-.close-btn svg {
-  width: 14px;
-  height: 14px;
-  display: block;
+.close-btn:hover {
+  opacity: 0.6;
 }
 
+/* =========================
+   Grid
+========================= */
 
-/* Grid */
 .archive-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
   gap: 40px 24px;
-  padding: 32px;
+
+  /* header 아래 공간 확보 */
+  padding: 96px 32px 32px;
 }
 
-/* Item */
+/* =========================
+   Items
+========================= */
+
 .archive-item {
   display: flex;
   flex-direction: column;
 }
 
-.archive-item figcaption {
-  margin-top: 8px;
-
-  color: rgba(0, 0, 0, 0.85);
-  text-align: center;
-
-  color: rgba(0, 0, 0, 0.85);
-
-text-align: center;
-font-family: Inter;
-font-size: 12px;
-font-style: normal;
-font-weight: 300;
-line-height: 15px; /* 125% */
-}
 .archive-item img {
   width: 100%;
   height: auto;
   display: block;
-  background: #ffffff;
+  background: #fff;
 }
 
 .archive-item figcaption {
   margin-top: 8px;
+  text-align: center;
+
   font-size: 12px;
-  line-height: 1.4;
-  color: #000;
+  font-weight: 300;
+  line-height: 15px;
+  color: rgba(0, 0, 0, 0.85);
 }
