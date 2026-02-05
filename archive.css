@@ -83,19 +83,24 @@ body {
   flex-direction: column;
 }
 
-.archive-item img {
+.archive-item img,
+.archive-item video {
   width: 100%;
   height: auto;
   display: block;
-  background: #fff;
+  object-fit: cover;
 }
 
 .archive-item figcaption {
-  margin-top: 8px;
+  margin-top: 5px;
   text-align: center;
 
   font-size: 12px;
   font-weight: 300;
   line-height: 15px;
   color: rgba(0, 0, 0, 0.85);
+}
+
+figure {
+  margin: 0;
 }
