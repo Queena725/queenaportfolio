@@ -101,6 +101,13 @@ body {
   color: rgba(0, 0, 0, 0.85);
 }
 
+
+.crop-top video {
+  object-fit: cover;
+  object-position: center 70%; /* 숫자 조절 */
+}
+
+
 figure {
   margin: 0;
 }
