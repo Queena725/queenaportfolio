@@ -64,13 +64,10 @@ body {
 /* =========================
    Grid
 ========================= */
-
 .archive-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 40px 40px;
-
-  /* header 아래 공간 확보 */
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px;
   padding: 96px 32px 32px;
 }
 
@@ -79,17 +76,33 @@ body {
 ========================= */
 
 .archive-item {
-  display: flex;
+  display: row;
   flex-direction: column;
+}
+
+
+.row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: center;
 }
 
 .archive-item img,
 .archive-item video {
   width: 100%;
   height: auto;
+  max-width: 520px;   /* ⭐ 이 값이 ‘저 큰 사이즈’ 기준 */
   display: block;
-  object-fit: cover;
+  object-fit: contain; /* ✅ 절대 안 잘림 */
+  margin: 0 auto;      /* 가운데 정렬 */
 }
+
+.archive-item--shrink img,
+.archive-item--shrink video {
+  transform: scale(0.85);   /* ⭐ 여기서 조절 */
+  transform-origin: center;
+}
+
 
 .archive-item figcaption {
   margin-top: 5px;
@@ -102,17 +115,7 @@ body {
 }
 
 
-.crop-top video {
-  object-fit: cover;
-  object-position: center 70%; /* 숫자 조절 */
-}
-
-
 figure {
   margin: 0;
 }
 
-
-.archive-item--large {
-  grid-column: span 2;
-}

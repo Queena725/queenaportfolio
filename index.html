@@ -6,20 +6,31 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <!-- 왼쪽 상단 -->
-    <div class="top-left">Queena Lee</div>
+      <div class="hover-image">
+    <img id="hoverImg" alt="" />
+     <video
+      id="hoverVideo"
+      muted
+      loop
+      playsinline
+    ></video>
+  </div>
+   
+    <div class="top-left">Queena </div>
 
-    <!-- 오른쪽 상단 -->
-    <div class="top-right">Info</div>
+    
+    <div class="top-right">Lee</div>
 
-    <!-- 왼쪽 하단 -->
-    <div class="bottom-left">
-      <p>UI/UX Design</p>
-      <p>Book Design</p>
-      <p>Coding</p>
-    </div>
+<div class="bottom-left">
+  <button class="filter-btn" data-filter="uiux">UI/UX Design</button>
+  <span class="divider-dot"></span>
 
-    <!-- 오른쪽 하단 -->
+  <button class="filter-btn" data-filter="book">Book Design</button>
+  <span class="divider-dot"></span>
+
+  <button class="filter-btn" data-filter="coding">Coding</button>
+</div>
+
 <!-- 오른쪽 하단 -->
 <a href="archive.html" class="bottom-right link">Archive</a>
 
@@ -28,31 +39,37 @@
     <a
       href="love-in-letters.html"
       class="dot"
-      data-image="images/love-in-letters.jpg"
+      data-type="image"
+  data-src="images/love-in-letters.jpg"
     ></a>
 
     <a
       href="Forest-n-feathers.html"
       class="dot"
-      data-image="images/forest-n-feathers.jpg"
+     data-type="image"
+  data-src="images/fnf/spread1.jpg"
     ></a>
 
-    <a
-      href="package-senses.html"
-      class="dot"
-      data-image="images/package-senses.jpg"
-    ></a>
+
+ <a
+  href="package-senses.html"
+  class="dot"
+ data-type="image"
+  data-src="images/package-for-sense/canamel-copy.png"
+></a>
 
     <a
       href="practice-web.html"
       class="dot"
-      data-image="images/practice-web.jpg"
+     data-type="image"
+  data-src="images/practice-love-web/laptop.png"
     ></a>
 
     <a
       href="atmos.html"
       class="dot"
-      data-image="images/atmos.jpg"
+      data-type="video"
+  data-src="images/atmos/atmos.mp4"
     ></a>
 
     <a
