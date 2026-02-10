@@ -2,14 +2,20 @@
   box-sizing: border-box;
 }
 
-body {
-      font-family: Inter, sans-serif;
-  color: #000;
+.text-inter-regular {
+  color: black;
   font-size: 14px;
-  font-weight: 350;
+  font-family: Inter, sans-serif;
+  font-weight: 300;
   line-height: 18.2px;
-  letter-spacing: -0.15px;
-  text-decoration: none;;
+  word-wrap: break-word;
+}
+body {
+  font-family: Inter, sans-serif;
+  color: black;
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 18.2px;
 }
 
 /* 텍스트 위치 */
@@ -176,7 +182,7 @@ body {
 
   font-family: inherit;
   font-size: 14px;
-  font-weight: 350;
+  font-weight: 300;
   color: inherit;
   cursor: pointer;
 }
