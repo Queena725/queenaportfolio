@@ -68,7 +68,7 @@ body {
 .archive-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 40px 24px;
+  gap: 40px 40px;
 
   /* header 아래 공간 확보 */
   padding: 96px 32px 32px;
@@ -110,4 +110,9 @@ body {
 
 figure {
   margin: 0;
+}
+
+
+.archive-item--large {
+  grid-column: span 2;
 }
