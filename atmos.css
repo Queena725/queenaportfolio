@@ -5,13 +5,13 @@
   width: 100%;
 
   display: flex;
-  justify-content: flex-end; /* ✅ 오른쪽 기준 */
+  justify-content: flex-end; /* 오른쪽 기준 */
   padding-right: 32px;
 }
 
 /* 큰 데스크탑 이미지 */
 .image-main {
-  max-width: 55%;
+  max-width: 80%;
   height: auto;
   display: block;
 }
@@ -20,8 +20,8 @@
 .image-overlay-small {
   position: absolute;
 
-  bottom: -56px;      /* ✅ 살짝 아래로 */
-  left: 50%;          /* ✅ 메인 이미지 안쪽 기준 */
+  bottom: -95px;      /*  살짝 아래로 */
+  left: 40%;          /*  메인 이미지 안쪽 기준 */
   transform: translateX(-50%);
 
   max-width: 28%;
@@ -47,17 +47,17 @@ body {
 
 body {
   font-family: Inter, sans-serif;
-  overflow: hidden; /* ✅ 전체 페이지 스크롤 차단 */
+  overflow: hidden; 
 }
 
-/* ---------- Layout ---------- */
+
 .book-layout {
   display: flex;
   width: 100vw;
-  height: 100svh; /* ✅ iOS safe height */
+  height: 100svh; 
 }
 
-/* ---------- LEFT: Text ---------- */
+
 .artwork-info {
   width: 427.25px;
   padding: 32px 0 0 32px;
@@ -153,7 +153,7 @@ body {
   padding: 48px 32px;
   gap: 64px;
 
-  overflow-y: auto; /* ✅ 오른쪽만 스크롤 */
+  overflow-y: auto; /* 오른쪽만 스크롤 */
 }
 
 
