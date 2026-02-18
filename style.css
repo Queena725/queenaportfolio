@@ -125,6 +125,7 @@ body {
   object-fit: contain;
 }
 
+
 .orbit {
   position: relative;
   z-index: 3;
@@ -218,4 +219,31 @@ body {
 .top-left a:active {
   color: inherit;
   text-decoration: none;
+}
+
+/* coming soon 전용 */
+
+.center-message {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 18px;
+  font-style: italic;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  z-index: 5;
+}
+
+
+/* 기본 영상 크기 */
+#hoverVideo {
+  width: 400px;
+  height: auto;
+}
+
+/*  Morp만 작게 */
+#hoverVideo.morp-video {
+  width: 400px;
 }

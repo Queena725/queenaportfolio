@@ -23,12 +23,24 @@ dots.forEach((dot) => {
 
     hoverImage.style.opacity = "1";
 
-    if (type === "video") {
-      hoverImg.style.display = "none";
-      hoverVideo.src = src;
-      hoverVideo.style.display = "block";
-      hoverVideo.play();
-    } else {
+if (type === "video") {
+  hoverImg.style.display = "none";
+  hoverVideo.src = src;
+  hoverVideo.style.display = "block";
+  hoverVideo.play();
+
+  // Morp일 때만 클래스 추가
+  if (src.includes("Morp.mp4")) {
+    hoverVideo.classList.add("morp-video");
+  } else {
+    hoverVideo.classList.remove("morp-video");
+  }
+}
+
+
+
+
+    else {
       hoverVideo.pause();
       hoverVideo.style.display = "none";
       hoverImg.src = src;
@@ -36,12 +48,13 @@ dots.forEach((dot) => {
     }
   });
 
-  dot.addEventListener("mouseleave", () => {
-    orbit.classList.remove("dim");
-    dot.classList.remove("active");
-    hoverImage.style.opacity = "0";
-    hoverVideo.pause();
-  });
+dot.addEventListener("mouseleave", () => {
+  orbit.classList.remove("dim");
+  dot.classList.remove("active");
+  hoverImage.style.opacity = "0";
+  hoverVideo.pause();
+  hoverVideo.classList.remove("morp-video"); //  추가
+});
 });
 
 /* ---------------- FILTER ---------------- */
@@ -74,3 +87,20 @@ filterButtons.forEach((btn) => {
   });
 });
 
+
+// coming soon 
+
+const centerMessage = document.getElementById("centerMessage");
+const comingDots = document.querySelectorAll(
+  '.dot[data-coming="true"]'
+);
+
+comingDots.forEach((dot) => {
+  dot.addEventListener("mouseenter", () => {
+    centerMessage.style.opacity = "1";
+  });
+
+  dot.addEventListener("mouseleave", () => {
+    centerMessage.style.opacity = "0";
+  });
+});

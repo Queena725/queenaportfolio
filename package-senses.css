@@ -18,11 +18,13 @@
   justify-content: flex-end;
 }
 
-.image-block.single img {
-  max-width: 55%; /* ✅ 두 장일 때 안정적인 크기 */
-  height: auto;
-}
 
+.image-block img {
+  width: 100%;
+  max-width: 950px;
+  height: auto;
+ 
+}
 
 
 *::before,
