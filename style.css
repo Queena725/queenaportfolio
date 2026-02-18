@@ -2,20 +2,31 @@
   box-sizing: border-box;
 }
 
-.text-inter-regular {
-  color: black;
-  font-size: 14px;
-  font-family: Inter, sans-serif;
-  font-weight: 300;
-  line-height: 18.2px;
-  word-wrap: break-word;
-}
 body {
   font-family: Inter, sans-serif;
   color: black;
   font-size: 14px;
   font-weight: 300;
   line-height: 18.2px;
+}
+
+.top-left a,
+.top-right a {
+  color: black;
+  text-decoration: none;
+}
+
+.top-left a:visited,
+.top-right a:visited {
+  color: black;
+}
+
+.top-left a:hover,
+.top-right a:hover,
+.top-left a:active,
+.top-right a:active {
+  color: black;
+  text-decoration: none;
 }
 
 /* 텍스트 위치 */
@@ -35,10 +46,9 @@ body {
   position: fixed;
   bottom: 24px;
   left: 24px;
-}
-
-.bottom-left p {
-  margin: 4px 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .bottom-right {
@@ -46,7 +56,6 @@ body {
   bottom: 24px;
   right: 24px;
 }
-
 
 .link {
   color: inherit;
@@ -58,7 +67,7 @@ body {
   opacity: 0.6;
 }
 
-/* 중앙 정렬 */
+/* 중앙 */
 .center {
   position: fixed;
   top: 50%;
@@ -66,7 +75,7 @@ body {
   transform: translate(-50%, -50%);
 }
 
-/* 점 기본 */
+/* 점 */
 .dot {
   position: absolute;
   top: 50%;
@@ -80,20 +89,24 @@ body {
   transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
-/* 회전하는 큰 원 */
+.dot:hover {
+  transform: scale(1.8);
+}
+
+.dot.dimmed {
+  opacity: 0.1;
+  pointer-events: none;
+}
+
+/* orbit */
 .orbit {
   position: relative;
   width: 560px;
   height: 560px;
   animation: spin 90s linear infinite;
+  z-index: 3;
 }
 
-/* hover 시 자신 강조 */
-.dot:hover {
-  transform: scale(1.8);
-}
-
-/* 다른 점 흐리게 */
 .orbit.dim .dot {
   opacity: 0.15;
 }
@@ -102,19 +115,37 @@ body {
   opacity: 1;
 }
 
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* dot 위치 */
+.dot:nth-child(1) { transform: rotate(0deg) translateX(280px); }
+.dot:nth-child(2) { transform: rotate(40deg) translateX(280px); }
+.dot:nth-child(3) { transform: rotate(80deg) translateX(280px); }
+.dot:nth-child(4) { transform: rotate(120deg) translateX(280px); }
+.dot:nth-child(5) { transform: rotate(160deg) translateX(280px); }
+.dot:nth-child(6) { transform: rotate(200deg) translateX(280px); }
+.dot:nth-child(7) { transform: rotate(240deg) translateX(280px); }
+.dot:nth-child(8) { transform: rotate(280deg) translateX(280px); }
+.dot:nth-child(9) { transform: rotate(320deg) translateX(280px); }
+
+/* ============================= */
+/* ✅ Hover Image 영역 */
+/* ============================= */
 
 .hover-image {
   position: fixed;
   inset: 0;
   opacity: 0;
   transition: opacity 0.4s ease;
-  z-index: 1;
   pointer-events: none;
-    z-index: 0;
+  z-index: 1;
 }
 
-.hover-image img,
-.hover-image video {
+/* ✅ 이미지 전용 */
+.hover-image img {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -126,61 +157,27 @@ body {
 }
 
 
-.orbit {
-  position: relative;
-  z-index: 3;
+#hoverVideo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 75vw;
+  max-width: 1000px;
+  height: auto;
+  object-fit: contain;
 }
 
 
-.dot:nth-child(1) {
-  transform: rotate(0deg) translateX(280px);
-}
-.dot:nth-child(2) {
-  transform: rotate(40deg) translateX(280px);
-}
-.dot:nth-child(3) {
-  transform: rotate(80deg) translateX(280px);
-}
-.dot:nth-child(4) {
-  transform: rotate(120deg) translateX(280px);
-}
-.dot:nth-child(5) {
-  transform: rotate(160deg) translateX(280px);
-}
-.dot:nth-child(6) {
-  transform: rotate(200deg) translateX(280px);
-}
-.dot:nth-child(7) {
-  transform: rotate(240deg) translateX(280px);
-}
-.dot:nth-child(8) {
-  transform: rotate(280deg) translateX(280px);
-}
-.dot:nth-child(9) {
-  transform: rotate(320deg) translateX(280px);
-}
 
-/* 시계 방향 회전 */
-@keyframes spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-.bottom-left {
-  display: flex;
-  align-items: center;     
-  gap: 10px;               
-}
+/* ============================= */
+/* filter */
+/* ============================= */
 
 .filter-btn {
   background: none;
   border: none;
   padding: 0;
-
   font-family: inherit;
   font-size: 14px;
   font-weight: 300;
@@ -188,12 +185,10 @@ body {
   cursor: pointer;
 }
 
-
-
 .filter-btn.active {
-  font-weight: 300;
-   opacity: 0.6;
+  opacity: 0.6;
 }
+
 .divider-dot {
   width: 3px;
   height: 3px;
@@ -202,26 +197,9 @@ body {
   opacity: 0.6;
 }
 
-.dot.dimmed {
-  opacity: 0.1;
-  pointer-events: none;
-}
-
-
-
-.top-left a {
-  color: inherit;
-  text-decoration: none;
-}
-
-.top-left a:hover,
-.top-left a:visited,
-.top-left a:active {
-  color: inherit;
-  text-decoration: none;
-}
-
-/* coming soon 전용 */
+/* ============================= */
+/* coming soon */
+/* ============================= */
 
 .center-message {
   position: fixed;
@@ -234,16 +212,4 @@ body {
   pointer-events: none;
   transition: opacity 0.3s ease;
   z-index: 5;
-}
-
-
-/* 기본 영상 크기 */
-#hoverVideo {
-  width: 400px;
-  height: auto;
-}
-
-/*  Morp만 작게 */
-#hoverVideo.morp-video {
-  width: 400px;
 }

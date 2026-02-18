@@ -10,7 +10,6 @@ const filterButtons = document.querySelectorAll(".filter-btn");
 let activeFilter = null;
 
 /* ---------------- HOVER ---------------- */
-
 dots.forEach((dot) => {
   dot.addEventListener("mouseenter", () => {
     orbit.classList.add("dim");
@@ -23,24 +22,23 @@ dots.forEach((dot) => {
 
     hoverImage.style.opacity = "1";
 
-if (type === "video") {
-  hoverImg.style.display = "none";
-  hoverVideo.src = src;
-  hoverVideo.style.display = "block";
-  hoverVideo.play();
+    if (type === "video") {
+      hoverImg.style.display = "none";
+      hoverVideo.src = src;
+      hoverVideo.style.display = "block";
+      hoverVideo.play();
 
-  // Morp일 때만 클래스 추가
-  if (src.includes("Morp.mp4")) {
-    hoverVideo.classList.add("morp-video");
-  } else {
-    hoverVideo.classList.remove("morp-video");
-  }
-}
+      //  기본 영상 크기 (모든 영상 공통)
+      hoverVideo.style.width = "75vw";
+      hoverVideo.style.maxWidth = "1000px";
 
+      // pigma만 작게
+      if (dot.getAttribute("href") === "pigma.html") {
+        hoverVideo.style.width = "50vw";
+        hoverVideo.style.maxWidth = "650px";
+      }
 
-
-
-    else {
+    } else {
       hoverVideo.pause();
       hoverVideo.style.display = "none";
       hoverImg.src = src;
@@ -48,15 +46,17 @@ if (type === "video") {
     }
   });
 
-dot.addEventListener("mouseleave", () => {
-  orbit.classList.remove("dim");
-  dot.classList.remove("active");
-  hoverImage.style.opacity = "0";
-  hoverVideo.pause();
-  hoverVideo.classList.remove("morp-video"); //  추가
-});
-});
+  dot.addEventListener("mouseleave", () => {
+    orbit.classList.remove("dim");
+    dot.classList.remove("active");
+    hoverImage.style.opacity = "0";
+    hoverVideo.pause();
 
+    // 항상 기본값 복구
+    hoverVideo.style.width = "75vw";
+    hoverVideo.style.maxWidth = "1000px";
+  });
+});
 /* ---------------- FILTER ---------------- */
 
 filterButtons.forEach((btn) => {
