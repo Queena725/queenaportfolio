@@ -77,32 +77,34 @@
 ========================= */
 
 .archive-item {
-  display: row;
+  display: flex;
   flex-direction: column;
-}
-
-
-.row {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  align-items: center;
 }
 
 .archive-item img,
 .archive-item video {
   width: 100%;
   height: auto;
-  max-width: 520px;   /* ⭐ 이 값이 ‘저 큰 사이즈’ 기준 */
   display: block;
-  object-fit: contain; /* ✅ 절대 안 잘림 */
-  margin: 0 auto;      /* 가운데 정렬 */
+  object-fit: contain;
+  margin: 0 auto;
+}
+
+.archive-item--large img,
+.archive-item--large video {
+  max-width: 520px;
+}
+
+.archive-item--small img,
+.archive-item--small video {
+  max-width: 350px;
 }
 
 .archive-item--shrink img,
 .archive-item--shrink video {
-  transform: scale(0.85);   /* ⭐ 여기서 조절 */
-  transform-origin: center;
+  transform: scale(0.85);
 }
+
 
 
 .archive-item figcaption {
@@ -116,6 +118,16 @@
 }
 
 
+
+
+.row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: center;
+}
+
+
+
 figure {
   margin: 0;
 }
@@ -125,6 +137,7 @@ figure {
 .archive-item video {
   cursor: pointer;
 }
+
 
 /* Lightbox 배경 */
 .lightbox {
@@ -142,7 +155,7 @@ figure {
   display: flex;
 }
 
-/* 콘텐츠 */
+
 .lightbox-content img,
 .lightbox-content video {
   max-width: 90vw;
@@ -164,4 +177,3 @@ figure {
   display: flex;
   align-items: center;
 }
-
