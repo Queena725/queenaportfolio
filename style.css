@@ -1,0 +1,215 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Inter, sans-serif;
+  color: black;
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 18.2px;
+}
+
+.top-left a,
+.top-right a {
+  color: black;
+  text-decoration: none;
+}
+
+.top-left a:visited,
+.top-right a:visited {
+  color: black;
+}
+
+.top-left a:hover,
+.top-right a:hover,
+.top-left a:active,
+.top-right a:active {
+  color: black;
+  text-decoration: none;
+}
+
+/* 텍스트 위치 */
+.top-left {
+  position: fixed;
+  top: 24px;
+  left: 24px;
+}
+
+.top-right {
+  position: fixed;
+  top: 24px;
+  right: 24px;
+}
+
+.bottom-left {
+  position: fixed;
+  bottom: 24px;
+  left: 24px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.bottom-right {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+}
+
+.link {
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.link:hover {
+  opacity: 0.6;
+}
+
+/* 중앙 */
+.center {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* 점 */
+.dot {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 10px;
+  height: 10px;
+  background: black;
+  border-radius: 50%;
+  transform-origin: 0 0;
+  cursor: pointer;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.dot:hover {
+  transform: scale(1.8);
+}
+
+.dot.dimmed {
+  opacity: 0.1;
+  pointer-events: none;
+}
+
+/* orbit */
+.orbit {
+  position: relative;
+  width: 560px;
+  height: 560px;
+  animation: spin 90s linear infinite;
+  z-index: 3;
+}
+
+.orbit.dim .dot {
+  opacity: 0.15;
+}
+
+.orbit.dim .dot.active {
+  opacity: 1;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* dot 위치 */
+.dot:nth-child(1) { transform: rotate(0deg) translateX(280px); }
+.dot:nth-child(2) { transform: rotate(40deg) translateX(280px); }
+.dot:nth-child(3) { transform: rotate(80deg) translateX(280px); }
+.dot:nth-child(4) { transform: rotate(120deg) translateX(280px); }
+.dot:nth-child(5) { transform: rotate(160deg) translateX(280px); }
+.dot:nth-child(6) { transform: rotate(200deg) translateX(280px); }
+.dot:nth-child(7) { transform: rotate(240deg) translateX(280px); }
+.dot:nth-child(8) { transform: rotate(280deg) translateX(280px); }
+.dot:nth-child(9) { transform: rotate(320deg) translateX(280px); }
+
+/* ============================= */
+/* ✅ Hover Image 영역 */
+/* ============================= */
+
+.hover-image {
+  position: fixed;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ✅ 이미지 전용 */
+.hover-image img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 75vw;
+  max-width: 1000px;
+  height: auto;
+  object-fit: contain;
+}
+
+
+#hoverVideo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 75vw;
+  max-width: 1000px;
+  height: auto;
+  object-fit: contain;
+}
+
+
+
+/* ============================= */
+/* filter */
+/* ============================= */
+
+.filter-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 300;
+  color: inherit;
+  cursor: pointer;
+}
+
+.filter-btn.active {
+  opacity: 0.6;
+}
+
+.divider-dot {
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: currentColor;
+  opacity: 0.6;
+}
+
+/* ============================= */
+/* coming soon */
+/* ============================= */
+
+.center-message {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 18px;
+  font-style: italic;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  z-index: 5;
+}
