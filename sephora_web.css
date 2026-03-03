@@ -1,0 +1,631 @@
+:root{
+  --bg:#ffffff;
+  --text:#000000;
+  --muted:rgba(0,0,0,.55);
+  --line:rgba(0,0,0,.10);
+  --chipBg:#ffffff;
+  --chipLine:rgba(0,0,0,.12);
+}
+
+*{ box-sizing:border-box; }
+
+
+.subtitle{
+  margin: 0 0 14px;  /* 12 -> 14~16 */
+  color: rgba(0,0,0,.55);
+  font-weight: 400;
+}
+
+body{
+  margin:0;
+  overflow-x:hidden;
+  font-family: Inter, sans-serif;
+  font-size:14px;
+  font-weight:300;
+  line-height:18.2px;
+  background:var(--bg);
+  color:var(--text);
+}
+
+/* chips 기본 (span, a 동일 스타일) */
+.chips span,
+.chips .chip{
+  border: 1px solid var(--chipLine);
+  border-radius: 999px;
+  padding: 6px 11px;
+  font-size: 12px;
+  background: var(--chipBg);
+  color: rgba(0,0,0,.75);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* 링크 칩만 살짝 인터랙션 */
+.chips .chip--link{
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.chips .chip--link:hover{
+  background: rgba(0,0,0,.03);
+}
+
+
+@media (max-width: 860px){
+  .wide{ width: min(1320px, calc(100% - 30px)); }
+}
+
+
+/* 기본 이미지 규칙 */
+img{ display:block; max-width:100%; height:auto; }
+a{ color:inherit; text-decoration:none; }
+
+
+
+/* ✅ wide가 page와 같은 왼쪽 라인에서 시작하게 */
+.wide{
+  width: min(1320px, calc(100% - 80px));
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* page(1200) 기준으로 left edge 맞추기 */
+.page{
+  width: min(1200px, calc(100% - 80px));
+  margin: 0 auto;
+}
+
+/* ✅ wide를 page의 왼쪽 라인에 '정렬' */
+.page .wide{
+  width: min(1320px, calc(100% - 80px));
+  margin-left: 0;     /* page 안에서 왼쪽 붙이기 */
+  margin-right: 0;
+}
+
+
+@media (max-width: 860px){
+  .page{ width: min(1200px, calc(100% - 30px)); }
+}
+
+
+/* top */
+.topbar{ padding: 6px 0 12px; }
+.crumb{ color:var(--muted); border-bottom:1px solid transparent; }
+.crumb:hover{ border-bottom-color:var(--line); }
+
+
+/* Close button */
+.close-btn {
+  font-size: 18px;
+   font-weight: 300;
+    letter-spacing: 0.02em;
+  text-decoration: none;
+  color: #000;
+  cursor: pointer;
+  line-height: 1;
+
+  background: none;
+  border: none;
+  padding: 0;
+
+  display: flex;
+  align-items: center;
+}
+
+.close-btn:hover {
+  opacity: 0.6;
+}
+
+
+
+/* =========================
+   HERO (full-bleed + no crop)
+========================= */
+
+/* full-bleed */
+.heroFull{
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+
+
+  margin-bottom: 40px; /* 24~80px 사이로 취향 조절 */
+}
+
+/* radial 배경 유지 (절대 transparent 금지) */
+.heroBgFull{
+  width:100%;
+  height:500px;
+  background: radial-gradient(162.39% 50% at 50% 50%, #E0F1FA 0%, #FFF 100%);
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  border:0;
+  border-radius:0;
+  box-shadow:none;
+
+  overflow: visible;      /* ✅ 잘림 방지 */
+  padding-top: 64px;
+}
+
+/* hero 이미지 박스: 정확히 가운데 */
+
+
+.heroMedia{
+  margin-top: 0; /* ✅ heroBgFull padding-top으로만 컨트롤 */
+}
+
+.heroMedia{
+
+  padding:0;
+  border:0;
+  background:transparent;
+  box-shadow:none;
+
+  display:flex;
+  width:714px;
+  height:431px;
+  justify-content:center;
+  align-items:center;
+  flex: 0 0 auto;
+
+  overflow: visible;      /* ✅ 잘림 방지 (중요) */
+}
+
+/* ✅ 기본 img 규칙(max-width/height:auto) 덮어쓰기 */
+.heroMedia img{
+  width:100% !important;
+  height:100% !important;
+  max-width:none !important;
+
+  object-fit:contain;     /* ✅ 절대 자르지 않음 */
+  display:block;
+
+  border:0;
+  box-shadow:none;
+}
+
+/* ✅ 작은 화면 대응 */
+@media (max-width: 820px){
+  .heroBgFull{ height: 420px; }
+  .heroMedia{
+    width: min(714px, 92vw);
+    height: auto;         /* ✅ 고정 높이 풀기 */
+    aspect-ratio: 714 / 431;
+  }
+  .heroMedia img{
+    width: 100% !important;
+    height: auto !important;
+  }
+}
+
+/* =========================
+   INTRO
+========================= */
+
+.intro{
+  padding-top:44px;
+  text-align:left;
+}
+
+.intro > *{ max-width: 720px; }
+
+.intro h1{
+  color:#0A0A0A;
+  font-family: Inter, sans-serif;
+  font-size:48px;
+  font-weight:600;
+
+  line-height: 1.12;      /* 48px 대신 비율 추천 */
+  letter-spacing:-1.0px;  /* -1.2가 답답하면 -0.8~-1.0 */
+
+  margin: 0 0 18px;       /* ✅ 이것만 남기기 (16~22px 추천) */
+}
+
+.subtitle{
+  margin:0 0 12px;
+  color:rgba(0,0,0,.55);
+  font-weight:400;
+}
+
+.introBody{
+  margin:0 0 18px;
+  max-width:650px;
+  color:rgba(0,0,0,.60);
+  line-height:1.7;
+  font-size:14px;
+}
+
+.chips{
+  margin-top:22px;
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+}
+.chips span{
+  border:1px solid var(--chipLine);
+  border-radius:999px;
+  padding:6px 11px;
+  font-size:12px;
+  background:var(--chipBg);
+  color:rgba(0,0,0,.75);
+}
+
+/* chips icon */
+.chip--icon{
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.chip__icon{
+  width: 14px;
+  height: 14px;
+  object-fit: contain;
+  display: block;
+}
+
+
+/* separators */
+hr{
+  border:0;
+  border-top:1px solid var(--line);
+  margin: 62px 0;
+}
+@media (max-width: 860px){
+  hr{ margin:46px 0; }
+}
+
+/* =========================
+   PROBLEM / SOLUTION
+========================= */
+
+
+.psSection{
+  padding: 56px 0;         
+  display: block;           
+  text-align: left;
+}
+
+/* 라벨: PAGE DESIGNS랑 같은 스타일로 통일 */
+.psSection .section-label{
+  margin: 0 0 14px;
+  font-family: Inter, sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(0,0,0,.45);
+}
+
+/* bullet 제거 + 들여쓰기 제거 */
+.psSection ul{
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* 여기서 “문장만 크게 bold” */
+.psSection li{
+  margin: 0;                 /* bullet 사라지면 spacing도 정리 */
+  font-family: Inter, sans-serif;
+  font-size: 28px;           /* 너무 크면 24~26 추천 */
+  line-height: 36px;
+  font-weight: 650;
+  letter-spacing: -0.3px;
+  color: #0A0A0A;
+  max-width: 820px;          /* 너무 길게 퍼지면 읽기 힘들어서 줄폭 제한 */
+}
+
+/* Problem/Solution 사이 간격 (원하면 더 줄여도 됨) */
+#problem{ padding-bottom: 28px; }
+#solution{ padding-top: 28px; }
+
+/* 모바일 */
+@media (max-width: 860px){
+  .psSection{ padding: 44px 0; }
+  .psSection li{
+    font-size: 24px;
+    line-height: 32px;
+  }
+}
+
+
+/* =========================
+   PAGE DESIGNS
+========================= */
+
+.section-label{
+  margin: 0 0 42px;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  color: rgba(0,0,0,.45);
+  font-weight:600;
+  text-transform: uppercase;
+}
+
+.pageDesigns{ margin-top: 6px; }
+
+/* h3 + p spec */
+.case-block{
+  margin-bottom: 56px;
+}
+@media (max-width: 860px){
+  .case-block{ margin-bottom: 42px; }
+}
+
+.case-block h3{
+  color:#0A0A0A;
+  font-family: Inter, sans-serif;
+  font-size:24px;
+  font-style:normal;
+  font-weight:600;
+  line-height:32px;
+  letter-spacing:-0.2px;
+  margin: 0 0 8px;
+}
+
+.case-block p{
+  color:#4A5565;
+  font-family: Inter, sans-serif;
+  font-size:16px;
+  font-style:normal;
+  font-weight:400;
+  line-height:26px;
+  margin: 0 0 18px;
+}
+
+/* compare layout */
+.compare-grid{
+  display:grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 150px;
+}
+.compare-grid.one{ grid-template-columns: 1fr; }
+
+@media (max-width: 860px){
+  .compare-grid{ grid-template-columns:1fr;  gap: 18px; }
+}
+
+
+
+/* frames */
+.frame{ margin:0; }
+
+figcaption{
+  margin-bottom: 7px;
+  font-size: 9px;
+  color: rgba(0,0,0,.45);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+}
+
+/* 데스크탑에서만 AFTER 더 오른쪽으로 */
+@media (min-width: 861px){
+  .compare-grid > .frame:last-child{
+    transform: translateX(80px); /* 80, 120, 160 이렇게 올려봐 */
+  }
+}
+
+
+/* scroll-in-frame */
+.scrollFrame{
+  height: 640px;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  overflow: auto;
+  background: #fff;
+     
+}
+@media (max-width: 860px){
+  .scrollFrame{ height: 520px; }
+}
+
+.scrollFrame img{
+  width: 100%;
+  height: auto;
+  cursor: zoom-in;
+}
+
+
+/* scrollFrame scrollbar — thin & subtle */
+.scrollFrame{
+  scrollbar-gutter: stable both-edges; /* 레이아웃 덜 흔들림(지원되는 브라우저에서) */
+}
+
+/* Chrome / Safari / Edge */
+.scrollFrame::-webkit-scrollbar{
+  width: 4px;      /* 세로 스크롤바 두께 */
+  height: 4px;     /* 가로 스크롤바 두께 */
+}
+
+.scrollFrame::-webkit-scrollbar-track{
+  background: transparent;  /* 트랙 배경 없애기 */
+}
+
+.scrollFrame::-webkit-scrollbar-thumb{
+  background: rgba(159, 159, 159, 0.18); /* 손잡이 색 */
+  border-radius: 999px;
+  border: 1px solid transparent; /* thumb가 더 얇아 보이게 */
+  background-clip: content-box;
+}
+
+.scrollFrame::-webkit-scrollbar-thumb{ background: rgba(162, 162, 162, 0.1); }
+.scrollFrame{ scrollbar-color: rgba(168, 168, 168, 0.1) transparent; }
+
+
+/* Firefox */
+.scrollFrame{
+  scrollbar-width: thin;
+  scrollbar-color: rgba(126, 126, 126, 0.18) transparent;
+}
+
+/* footer */
+.footer{
+  margin-top: 46px;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 12px;
+}
+
+/* Lightbox dialog */
+.dlg{
+  border:none;
+  padding:0;
+  background:transparent;
+  width:min(1200px, 96vw);
+}
+.dlg::backdrop{ background: rgba(0,0,0,.55); }
+
+.dlgBox{
+  background:#fff;
+  border-radius: 14px;
+  overflow:hidden;
+  border: 1px solid var(--line);
+}
+
+.dlgTop{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.dlgClose{
+  border: 1px solid var(--line);
+  background: transparent;
+  border-radius: 999px;
+  padding: 6px 10px;
+  cursor:pointer;
+  font: inherit;
+}
+.dlgClose:hover{ background: rgba(0,0,0,.03); }
+
+#dlgImg{
+  width:80%;
+  height:auto;
+
+  margin: 0 auto;               
+}
+
+
+/* =========================
+   CHANGES (3-column)
+========================= */
+/* =========================
+   CHANGES — metric cards (like reference)
+========================= */
+
+/* =========================
+   CHANGES — cohesive cards
+========================= */
+
+
+
+.changes{
+  padding: 28px 0 10px;
+}
+
+/* 카드 3개 그리드 */
+.changesGrid{
+  display:grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 14px;
+}
+
+/* 카드 자체: 기존 라인/톤에 맞추기 */
+.changeCard{
+  background: rgba(0,0,0,.02);                 /* 더 연하게 */
+  border: 1px solid var(--line);               /* 기존 line 사용 */
+  border-radius: 14px;                          /* scrollFrame(10px)보다 살짝 */
+  padding: 18px 18px 16px;
+}
+
+/* 위 숫자/키커: 너무 “굵은 존재감” 줄이기 */
+.changeKicker{
+  font-size: 12px;
+  font-weight: 500;                             /* 600 -> 500 */
+  letter-spacing: 0.12em;                       /* section-label 느낌 */
+  text-transform: uppercase;
+  color: rgba(0,0,0,.55);                       /* muted */
+  margin-bottom: 28px;                          /*  48 -> 28 (덜 과장) */
+}
+
+/* 타이틀: case-block h3처럼 크지 않게, but 존재감 */
+.changeTitle{
+  margin: 0 0 6px;
+  font-size: 14px;                              /* body 스케일 */
+  font-weight: 600;
+  line-height: 20px;
+  color: rgba(0,0,0,.85);
+}
+
+/* 설명: pageDesigns p와 톤 통일 */
+.changeDesc{
+  margin: 0;
+  font-size: 13px;                              /* 12.5 -> 13 */
+  line-height: 20px;
+  color: rgba(0,0,0,.55);                       /*  muted */
+  max-width: none;                              /* 문장 폭 제한 없애서 통일 */
+}
+
+/* hover는 아주 미묘하게만 (원하면) */
+.changeCard:hover{
+  background: rgba(0,0,0,.025);
+}
+
+/* 반응형 */
+@media (max-width: 900px){
+  .changesGrid{ grid-template-columns: 1fr; }
+  .changeKicker{ margin-bottom: 16px; }
+}
+
+.reflection{ padding: 56px 0; }
+.reflectionList{
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 12px;
+}
+.reflectionList li{
+  font-size: 16px;
+  line-height: 26px;
+  color: rgba(0,0,0,.55);
+}
+
+.cta{ padding: 72px 0 96px; }
+.ctaTitle{
+  margin: 10px 0 22px;
+  font-size: 48px;
+  line-height: 1.05;
+  letter-spacing: -1.2px;
+  font-weight: 700;
+  color: #0A0A0A;
+  max-width: 820px;
+}
+.ctaLink{
+  display: inline-block;
+  font-size: 18px;
+  font-weight: 600;
+  color: #0A0A0A;
+  border-bottom: 2px solid rgba(0,0,0,.2);
+  padding-bottom: 6px;
+}
+.ctaLink:hover{ border-bottom-color: rgba(0,0,0,.55); }
+
+@media (max-width: 860px){
+  .ctaTitle{ font-size: 36px; letter-spacing: -0.8px; }
+}
