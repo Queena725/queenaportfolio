@@ -1,0 +1,508 @@
+/* ===== Sephora sidebar additions (keeps cookie layout) ===== */
+
+.sideCard{
+  width: 100%;
+  max-width: 384px;          /* cookie description max-width랑 맞춤 */
+  border: 1px solid rgba(0,0,0,.10);
+  border-radius: 16px;
+  padding: 14px;
+  background: #fff;
+  margin-top: 16px;
+}
+
+.sideLabel{
+  margin: 0 0 10px;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(0,0,0,.45);
+}
+
+.sideTitle{ font-size: 14px; font-weight: 600; }
+.sideMeta{ margin-top: 6px; font-size: 12px; color: rgba(0,0,0,.55); }
+
+.sideList{ display: grid; gap: 10px; }
+
+.sideBtn{
+  display: grid;
+  grid-template-columns: 84px 1fr;
+  gap: 10px;
+  align-items: center;
+
+  padding: 10px;
+  border-radius: 14px;
+  border: 1px solid rgba(0,0,0,.08);
+  background: #fff;
+
+  cursor: pointer;
+  text-align: left;
+}
+
+.sideBtn img{
+  width: 84px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 1px solid rgba(0,0,0,.08);
+}
+
+.sideBtnTitle{
+  font-weight: 600;
+  font-size: 13px;
+  color: rgba(0,0,0,.85);
+}
+
+.sideBtnSub{
+  font-size: 12px;
+  color: rgba(0,0,0,.55);
+  margin-top: 2px;
+}
+
+.sideBtn:hover{
+  border-color: rgba(0,0,0,.14);
+  background: rgba(0,0,0,.01);
+}
+
+/* ✅ 얇고 예쁜 active 강조 (두꺼운 테두리 X) */
+.sideBtn.is-active{
+  border-color: rgba(0,0,0,.22);
+  box-shadow: 0 0 0 1px rgba(0,0,0,.06);
+  background: rgba(0,0,0,.01);
+}
+
+/* compact project card */
+.sideCard--compact{
+  padding: 14px;
+}
+
+/* minimal pill button */
+.sideCta{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: fit-content;
+  padding: 10px 14px;
+
+  border: 1px solid rgba(0,0,0,.12);
+  border-radius: 999px;
+
+  font-size: 13px;
+  font-weight: 400;
+  color: rgba(0,0,0,.75);
+  text-decoration: none;
+
+  background: transparent;
+}
+
+.sideCta:hover{
+  background: rgba(0,0,0,.03);
+  border-color: rgba(0,0,0,.16);
+}
+
+
+
+.caseStudyBtn{
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  padding: 10px 14px;
+  border: 1px solid rgba(0,0,0,.14);
+  border-radius: 999px;
+
+  font-size: 13px;
+  font-weight: 400;
+  color: rgba(0,0,0,.75);
+  text-decoration: none;
+
+  background: transparent;
+}
+
+.caseStudyBtn:hover{
+  background: rgba(0,0,0,.03);
+  border-color: rgba(0,0,0,.18);
+}
+
+
+/* tools pills */
+.pillRow{ display:flex; flex-wrap:wrap; gap:8px; }
+.pill{
+  border: 1px solid rgba(0,0,0,.12);
+  border-radius: 999px;
+  padding: 6px 10px;
+  font-size: 12px;
+  color: rgba(0,0,0,.75);
+}
+
+.sideLink{
+  display:inline-block;
+  font-size: 13px;
+  color: rgba(0,0,0,.85);
+}
+
+/* right image frame (optional, cleaner than heavy shadow) */
+.image-main--frame{
+  border-radius: 14px;
+  border: 1px solid rgba(0,0,0,.10);
+  background: #fff;
+}
+
+
+
+img {
+  filter: drop-shadow(0 8px 12px rgba(0, 0, 0, 0.4));
+}
+
+
+.image-main {
+  width: 100%;
+  max-width: 900px;
+  height: auto;
+  display: block;
+}
+
+.image-overlay,
+.project-images {
+  max-width: 100%;
+  overflow: visible;
+}
+
+/* ---------- Reset ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  font-family: Inter, sans-serif;
+  overflow-x: hidden; 
+  overflow-y:auto;
+}
+
+
+.book-layout {
+  display: flex;
+  width: 100vw;
+  height: 100svh; 
+}
+
+
+.artwork-info {
+  width: 427.25px;
+  padding: 32px 0 0 32px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  background: #fff;
+}
+
+/* Nav */
+.artwork-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.nav-index {
+  color: #000;
+  font-size: 14px;
+  font-weight: 350;
+  line-height: 18.2px;
+  letter-spacing: -0.15px;
+  text-decoration: none;
+}
+
+.nav-next {
+  color: #99a1af;
+  font-size: 14px;
+  font-weight: 350;
+  line-height: 18.2px;
+  letter-spacing: -0.15px;
+  text-decoration: none;
+}
+
+.nav-about {
+  color: #99a1af;
+  font-size: 14px;
+  font-weight: 350;
+  line-height: 18.2px;
+  letter-spacing: -0.15px;
+  margin-bottom: 24px;
+}
+
+/* Text */
+.artwork-title {
+  font-size: 14px;
+  font-style: italic;
+  font-weight: 350;
+  line-height: 18.2px;
+  letter-spacing: -0.15px;
+  margin-bottom: 6px;
+}
+
+.artwork-date {
+  font-size: 14px;
+  font-weight: 350;
+  line-height: 18.2px;
+  letter-spacing: -0.15px;
+  margin-bottom: 6px;
+}
+
+.artwork-category {
+  font-size: 14px;
+  font-weight: 350;
+  line-height: 20px;
+  letter-spacing: -0.15px;
+  margin-bottom: 24px;
+}
+
+.artwork-description {
+  max-width: 384px;
+  font-size: 14px;
+  font-weight: 350;
+  line-height: 22.75px;
+  letter-spacing: -0.15px;
+
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
+
+/* ---------- RIGHT: Images (scrollable) ---------- */
+/* ================================
+   Sephora patch — clean frame + minimal buttons + no crop
+   Paste at bottom of cookie.css
+================================ */
+
+/* 1) Remove the global image shadow in cookie.css */
+img { filter: none !important; } /* overrides: img { filter: drop-shadow(...) } */
+
+/* 2) Right panel: give more breathing room + avoid “bottom feels cut” */
+.project-images{
+  align-items: flex-start;          /* was flex-end (pushing content to right) */
+  padding: 48px 32px 120px;         /* extra bottom padding so last pixels aren't cramped */
+  overflow-y: auto;
+}
+
+/* (Optional) If you want the image to sit a bit more centered in the right panel:
+.project-images{ padding-left: 48px; padding-right: 48px; }
+*/
+
+/* 3) Image sizing: show full image, never crop */
+.image-main{
+  width: 100%;
+  max-width: 980px;                /* slightly larger than 900, still controlled */
+  height: auto;
+  display: block;
+}
+
+/* 4) “Before-version” frame style: thin border, no shadow */
+.image-main--frame{
+  border: 1px solid rgba(0,0,0,.10);
+  border-radius: 0px;
+  background: #fff;
+}
+
+/* If you want a tiny inset padding like a real frame (optional):
+.image-main--frame{ padding: 8px; }
+.image-main--frame{ box-sizing: border-box; }
+*/
+
+/* ================================
+   Minimal clean buttons (PAGES list)
+================================ */
+.sideCard{
+  border: 1px solid rgba(0,0,0,.10);
+  border-radius: 16px;
+  padding: 14px;
+  background: #fff;
+}
+
+.sideBtn{
+  border: 1px solid rgba(0,0,0,.08);   /* thinner */
+  border-radius: 14px;
+  background: #fff;
+  padding: 10px;
+  box-shadow: none;                    /* ensure no shadow */
+}
+
+/* Keep hover super subtle */
+.sideBtn:hover{
+  background: rgba(0,0,0,.01);
+  border-color: rgba(0,0,0,.12);
+}
+
+/* Active: clean + minimal (no thick outline) */
+.sideBtn.is-active{
+  border-color: rgba(0,0,0,.18);
+  box-shadow: none;
+  background: rgba(0,0,0,.015);
+}
+
+/* Thumbnail image inside button: clean and not heavy */
+.sideBtn img{
+  border: 1px solid rgba(0,0,0,.08);
+  border-radius: 10px;
+}
+
+/* ---------- Mobile ---------- */
+@media (max-width: 700px) {
+  body {
+    overflow: auto;
+  }
+
+  .book-layout {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .artwork-info {
+    width: 100%;
+    padding: 24px;
+  }
+
+  .artwork-description {
+    max-width: 100%;
+  }
+
+  .project-images {
+    align-items: center;
+    padding: 32px 0;
+    overflow-y: visible;
+  }
+
+  .image-block {
+    justify-content: center;
+  }
+
+  .image-block.single img {
+    max-width: 85%;
+  }
+
+  .image-block.pair {
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .image-block.pair img {
+    max-width: 60%;
+  }
+}
+
+
+/* =========================================
+   FORCE INDEPENDENT SCROLL (Left / Right)
+   Paste at the very bottom of cookie.css
+========================================= */
+
+/* 1) page 자체는 스크롤 금지 (왼쪽 스크롤이 body를 건드리지 않게) */
+html, body{
+  height: 100%;
+  overflow: hidden; /* 핵심 */
+}
+
+/* 2) 두 칼럼을 한 화면(뷰포트) 안에 고정 */
+.book-layout{
+  height: 100vh !important;
+  width: 100vw !important;
+   max-width: none;
+}
+
+/* left panel stays white */
+.artwork-info{ background:#fff; }
+
+/* right panel + outside area stays grey */
+html, body{ background:#F0F1F7; }
+.project-images{ background:#F0F1F7; }
+
+/* ===== remove rounded corners on the main image/frame ===== */
+.image-main,
+.image-main--frame,
+.image-overlay{
+  border-radius: 0 !important;
+}
+
+/* 만약 thumb(왼쪽 PAGES)도 둥근 거 싫으면 이것도 추가 */
+.sideBtn,
+.sideBtn img{
+  border-radius: 0 !important;
+}
+
+/* 3) 왼쪽만 스크롤 */
+.artwork-info{
+  height: 100vh !important;
+  overflow-y: auto !important;
+  overscroll-behavior: contain; /* 트랙패드 바운스가 body로 전달되는거 방지 */
+  padding-bottom: 120px;        /* 아래 여백(선택) */
+}
+
+/* RIGHT panel background */
+.project-images{
+  background: #F0F1F7;
+}
+
+/* 이미지가 가운데로 오게 */
+.project-images{
+  display: flex;              /* 이미 flex면 이 줄은 생략 가능 */
+  justify-content: center;    /* 가로 중앙 */
+  align-items: flex-start;    /* 세로는 위에서 시작(스크롤 자연스럽게) */
+}
+
+/* 이미지 컨테이너도 가운데 정렬 유지 */
+.image-overlay{
+  width: 100%;
+  max-width: 1100px;          /* 원하는 폭(900~1200 사이로 조절) */
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  padding: 48px 0 140px;      /* 위/아래 여백(아래 잘림 방지) */
+}
+
+/* 메인 이미지 크기 (너무 커지면 max-width로 조절) */
+.image-main{
+  width: 100%;
+  height: auto;
+  max-width: 1100px;
+}
+
+/* ===== Make LEFT/RIGHT margins match ===== */
+:root{
+  --gutter: 48px;   /* ✅ 왼쪽 텍스트 padding과 같은 값으로 맞추면 됨 */
+}
+
+/* 왼쪽 패널(텍스트)도 확실히 같은 기준으로 */
+.artwork-info{
+  padding-left: var(--gutter) !important;
+  padding-right: var(--gutter) !important;
+}
+
+/* 오른쪽 패널도 동일한 여백 */
+.project-images{
+  padding-left: var(--gutter) !important;
+  padding-right: var(--gutter) !important;
+}
+
+/* 이미지 컨테이너는 패딩 안에서만 가운데 정렬 */
+.image-overlay{
+  max-width: 1100px;  /* 필요하면 900~1200 */
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* 모바일에서는 조금 줄이기 */
+@media (max-width: 900px){
+  :root{ --gutter: 20px; }
+}

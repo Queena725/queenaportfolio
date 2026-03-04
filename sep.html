@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>Sephora Website Redesign</title>
+
+  <link rel="stylesheet" href="sep.css" />
+  <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
+  <script src="sep.js" defer></script>
+</head>
+
+<body>
+  <main class="book-layout">
+    <!-- LEFT -->
+    <aside class="artwork-info">
+      <!-- keep your nav exactly like cookie.html -->
+      <nav class="artwork-nav">
+        <a href="index.html" class="nav-index">INDEX</a>
+        <a href="next.html" class="nav-next">NEXT &gt;</a>
+      </nav>
+
+      <p class="nav-about">(ABOUT)</p>
+
+      <!-- your content -->
+      <h1 class="artwork-title">Sephora Desktop Redesign</h1>
+      <p class="artwork-date">2025</p>
+      <p class="artwork-category">UI/UX, Concept Redesign, Figma</p>
+
+      <p class="artwork-description">
+        A layout and hierarchy redesign to improve scannability and reduce decision friction across the shopping journey.
+      </p>
+
+      <!--  NEW: project meta card (optional) -->
+              <hr />
+
+      <a class="sideCta" href="sephora_web.html">View case study ↗</a>
+
+      <!--  NEW: pages list (this is what you wanted) -->
+      <section class="sideCard">
+        <p class="sideLabel">PAGES</p>
+
+        <div class="sideList" id="sideList">
+            <button class="sideBtn is-active" type="button"
+  data-title="Home"
+  data-src="images/sephora/SEPHORA-Main page.png"
+  aria-current="true">
+  <img src="images/sephora/SEPHORA-Main page.png" alt="" aria-hidden="true">
+  <div class="sideTxt">
+    <div class="sideBtnTitle">Home</div>
+    <div class="sideBtnSub">Desktop</div>
+  </div>
+</button>
+          
+
+          <button class="sideBtn" type="button"
+            data-title="Category"
+            data-src="images/sephora/SEPHORA- New page 1.png">
+            <img src="images/sephora/SEPHORA- New page 1.png" alt="" aria-hidden="true">
+            <div class="sideTxt">
+              <div class="sideBtnTitle">Category</div>
+              <div class="sideBtnSub">Desktop</div>
+            </div>
+          </button>
+
+          <button class="sideBtn" type="button"
+            data-title="Product"
+            data-src="images/sephora/SEPHORA- New page 1-2.png">
+            <img src="images/sephora/SEPHORA- New page 1-2.png" alt="" aria-hidden="true">
+            <div class="sideTxt">
+              <div class="sideBtnTitle">Product</div>
+              <div class="sideBtnSub">Desktop</div>
+            </div>
+          </button>
+
+          <button class="sideBtn" type="button"
+            data-title="About"
+            data-src="images/sephora/SEPHORA-About page.png">
+            <img src="images/sephora/SEPHORA-About page.png" alt="" aria-hidden="true">
+            <div class="sideTxt">
+              <div class="sideBtnTitle">About</div>
+              <div class="sideBtnSub">Desktop</div>
+            </div>
+          </button>
+
+          <button class="sideBtn" type="button"
+            data-title="Events"
+            data-src="images/sephora/SEPHORA- Events page.png">
+            <img src="images/sephora/SEPHORA- Events page.png" alt="" aria-hidden="true">
+            <div class="sideTxt">
+              <div class="sideBtnTitle">Events</div>
+              <div class="sideBtnSub">Desktop</div>
+            </div>
+          </button>
+        </div>
+      </section>
+
+ 
+
+      <section class="sideCard">
+        <p class="sideLabel">CONTACT</p>
+        <a class="sideLink" href="mailto:leeq370@newschool.edu">leeq370@newschool.edu</a>
+      </section>
+    </aside>
+
+    <!-- RIGHT (scrollable, like cookie.css already does) -->
+    <section class="project-images">
+      <div class="image-overlay">
+        <img
+          class="image-main image-main--frame"
+          id="mainImg"
+          src="images/sephora/SEPHORA-Main page.png"
+          alt="Sephora redesign — Home"
+        />
+      </div>
+    </section>
+  </main>
+</body>
+</html>
