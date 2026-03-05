@@ -1,3 +1,6 @@
+// =====================
+// Elements
+// =====================
 const dots = document.querySelectorAll(".dot");
 const orbit = document.querySelector(".orbit");
 
@@ -5,69 +8,135 @@ const hoverImage = document.querySelector(".hover-image");
 const hoverImg = document.getElementById("hoverImg");
 const hoverVideo = document.getElementById("hoverVideo");
 
+const centerMessage = document.getElementById("centerMessage");
+
 const filterButtons = document.querySelectorAll(".filter-btn");
 
 let activeFilter = null;
 
-/* ---------------- HOVER ---------------- */
+// =====================
+// Helpers
+// =====================
+function showCenterMessage(text = "Click to view") {
+  if (!centerMessage) return;
+  centerMessage.textContent = text;
+  centerMessage.classList.add("blink");
+}
+
+function hideCenterMessage() {
+  if (!centerMessage) return;
+  centerMessage.classList.remove("blink");
+}
+
+
+function getDotSrc(dot) {
+  // support both data-src and data-image
+  const raw = dot.dataset.src || dot.dataset.image;
+  return raw ? raw.trim() : "";
+}
+
+function getDotType(dot) {
+  return (dot.dataset.type || "image").trim();
+}
+
+// =====================
+// HOVER (Image/Video preview + message)
+// =====================
 dots.forEach((dot) => {
   dot.addEventListener("mouseenter", () => {
-    orbit.classList.add("dim");
+    if (orbit) orbit.classList.add("dim");
     dot.classList.add("active");
 
-    const src = dot.dataset.src || dot.dataset.image;
-    const type = dot.dataset.type || "image";
+    const src = getDotSrc(dot);
+    const type = getDotType(dot);
 
-    if (!src) return;
+    // If no preview source, don't show preview/message
+    if (!src) {
+      if (hoverImage) hoverImage.style.opacity = "0";
+      hideCenterMessage();
+      return;
+    }
 
-    hoverImage.style.opacity = "1";
+    // Show preview container
+    if (hoverImage) hoverImage.style.opacity = "1";
+
+    // Center message text
+    const isComing = dot.dataset.coming === "true";
+    showCenterMessage(isComing ? "Coming soon" : "Click to view");
 
     if (type === "video") {
-      hoverImg.style.display = "none";
-      hoverVideo.src = src;
-      hoverVideo.style.display = "block";
-      hoverVideo.play();
+      // Video mode
+      if (hoverImg) hoverImg.style.display = "none";
 
-      //  기본 영상 크기 (모든 영상 공통)
-      hoverVideo.style.width = "75vw";
-      hoverVideo.style.maxWidth = "1000px";
+      if (hoverVideo) {
+        hoverVideo.src = src;
+        hoverVideo.style.display = "block";
 
-      // pigma만 작게
-      if (dot.getAttribute("href") === "pigma.html") {
-        hoverVideo.style.width = "50vw";
-        hoverVideo.style.maxWidth = "650px";
+        // Default video size
+        hoverVideo.style.width = "75vw";
+        hoverVideo.style.maxWidth = "1000px";
+
+        // pigma special case
+        if (dot.getAttribute("href") === "pigma.html") {
+          hoverVideo.style.width = "50vw";
+          hoverVideo.style.maxWidth = "650px";
+        }
+
+        // play (ignore autoplay errors)
+        const p = hoverVideo.play();
+        if (p && typeof p.catch === "function") p.catch(() => {});
       }
-
     } else {
-      hoverVideo.pause();
-      hoverVideo.style.display = "none";
-      hoverImg.src = src;
-      hoverImg.style.display = "block";
+      // Image mode
+      if (hoverVideo) {
+        hoverVideo.pause();
+        hoverVideo.style.display = "none";
+      }
+      if (hoverImg) {
+        hoverImg.src = src;
+        hoverImg.style.display = "block";
+      }
     }
   });
 
   dot.addEventListener("mouseleave", () => {
-    orbit.classList.remove("dim");
+    if (orbit) orbit.classList.remove("dim");
     dot.classList.remove("active");
-    hoverImage.style.opacity = "0";
-    hoverVideo.pause();
 
-    // 항상 기본값 복구
-    hoverVideo.style.width = "75vw";
-    hoverVideo.style.maxWidth = "1000px";
+    if (hoverImage) hoverImage.style.opacity = "0";
+    hideCenterMessage();
+
+    // Reset video safely
+    if (hoverVideo) {
+      hoverVideo.pause();
+      hoverVideo.style.display = "none";
+
+      // restore defaults
+      hoverVideo.style.width = "75vw";
+      hoverVideo.style.maxWidth = "1000px";
+    }
+  });
+
+  // Optional: block click for coming soon dots
+  dot.addEventListener("click", (e) => {
+    if (dot.dataset.coming === "true") {
+      e.preventDefault();
+    }
   });
 });
-/* ---------------- FILTER ---------------- */
 
+// =====================
+// FILTER
+// =====================
 filterButtons.forEach((btn) => {
   btn.addEventListener("click", () => {
     const filter = btn.dataset.filter;
 
-    // 버튼 active 스타일
+    // button active style
     filterButtons.forEach((b) => b.classList.remove("active"));
     btn.classList.add("active");
 
-    // 같은 버튼 다시 누르면 전체 복구
+    // toggle off if same button clicked
     if (activeFilter === filter) {
       dots.forEach((dot) => dot.classList.remove("dimmed"));
       filterButtons.forEach((b) => b.classList.remove("active"));
@@ -87,20 +156,31 @@ filterButtons.forEach((btn) => {
   });
 });
 
+// =====================
+// Custom cursor dot (10px -> 28px on hover)
+// =====================
+const cursorDot = document.getElementById("cursorDot");
 
-// coming soon 
-
-const centerMessage = document.getElementById("centerMessage");
-const comingDots = document.querySelectorAll(
-  '.dot[data-coming="true"]'
-);
-
-comingDots.forEach((dot) => {
-  dot.addEventListener("mouseenter", () => {
-    centerMessage.style.opacity = "1";
+if (cursorDot) {
+  window.addEventListener("mousemove", (e) => {
+    cursorDot.style.left = `${e.clientX}px`;
+    cursorDot.style.top = `${e.clientY}px`;
   });
 
-  dot.addEventListener("mouseleave", () => {
-    centerMessage.style.opacity = "0";
+  // expand on any interactive element
+  const interactiveSelector =
+    "a, button, input, textarea, select, label, [role='button'], .dot, .filter-btn, .link";
+
+  document.addEventListener("mouseover", (e) => {
+    if (e.target.closest(interactiveSelector)) {
+      cursorDot.classList.add("is-hover");
+    }
   });
-});
+
+  document.addEventListener("mouseout", (e) => {
+    if (e.target.closest(interactiveSelector)) {
+      cursorDot.classList.remove("is-hover");
+    }
+  });
+}
+

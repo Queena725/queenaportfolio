@@ -2,6 +2,8 @@
   box-sizing: border-box;
 }
 
+
+
 body {
   font-family: Inter, sans-serif;
   color: black;
@@ -80,14 +82,24 @@ body {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 10px;
-  height: 10px;
+  width: 14px;
+  height: 14px;
   background: black;
   border-radius: 50%;
   transform-origin: 0 0;
   cursor: pointer;
   transition: opacity 0.3s ease, transform 0.3s ease;
 }
+
+/* dot 근처로 가도 hover 되게: hit area 확장 */
+.dot::before {
+  content: "";
+  position: absolute;
+  inset: -14px;        /* 숫자 키우면 더 넓게 잡힘 (예: -18px) */
+  border-radius: 50%;
+  background: transparent;
+}
+
 
 .dot:hover {
   transform: scale(1.8);
@@ -101,8 +113,8 @@ body {
 /* orbit */
 .orbit {
   position: relative;
-  width: 560px;
-  height: 560px;
+  width: 650px;
+  height: 650px;
   animation: spin 90s linear infinite;
   z-index: 3;
 }
@@ -201,15 +213,29 @@ body {
 /* coming soon */
 /* ============================= */
 
-.center-message {
+.center-message{
   position: fixed;
-  top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 18px;
+  top: 50%;
+  transform: translate(-50%, -50%) translateY(400px);
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: rgba(0,0,0,0.45);
   font-style: italic;
+
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.3s ease;
-  z-index: 5;
+  z-index: 99999;
+}
+
+/* hover 중일 때 깜빡 */
+.center-message.blink{
+  animation: blinkFade 1.2s ease-in-out infinite;
+}
+
+@keyframes blinkFade{
+  0%, 100% { opacity: 0.15; }
+  45%      { opacity: 0.55; }
+  55%      { opacity: 0.10; } /* 살짝 '감았다' 느낌 */
 }
