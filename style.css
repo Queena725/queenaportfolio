@@ -278,7 +278,8 @@ body {
 }
 
 .filter-btn.active {
-  opacity: 0.6;
+  color: var(--accent-text);
+  opacity: 1;
 }
 
 .divider-dot {
@@ -308,7 +309,11 @@ body {
   opacity: 1;
   pointer-events: none;
   z-index: 99999;
-  transition: opacity 0.2s ease;
+  transition: color 0.4s ease, opacity 0.2s ease;
+}
+
+.center-message.is-accent {
+  color: var(--accent-text);
 }
 
 .center-message.is-hidden,

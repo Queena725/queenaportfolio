@@ -18,6 +18,12 @@ let activeFilter = null;
 let activePreviewUrl = "";
 const touchQuery = window.matchMedia("(hover: none), (pointer: coarse)");
 
+if (centerMessage) {
+  window.setTimeout(() => {
+    centerMessage.classList.add("is-accent");
+  }, 10000);
+}
+
 function isTouchMode() {
   return touchQuery.matches;
 }
