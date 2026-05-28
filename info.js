@@ -1,6 +1,7 @@
 const editorialHero = document.getElementById("editorialHero");
 const hoverProfileImg = document.getElementById("hoverProfileImg");
 const specializationsLabel = document.querySelector(".specializations-label");
+const mediaPill = document.querySelector(".media-pill");
 
 const hoverImages = [
 
@@ -13,6 +14,7 @@ let hoverIndex = 0;
 
 if (editorialHero && hoverProfileImg) {
   editorialHero.addEventListener("mouseenter", () => {
+    if (mediaPill) mediaPill.classList.add("is-hidden");
     hoverIndex = 0;
     hoverProfileImg.src = hoverImages[hoverIndex];
 
@@ -23,6 +25,7 @@ if (editorialHero && hoverProfileImg) {
   });
 
   editorialHero.addEventListener("mouseleave", () => {
+    if (mediaPill) mediaPill.classList.remove("is-hidden");
     clearInterval(hoverInterval);
     hoverInterval = null;
   });
