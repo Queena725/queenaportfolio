@@ -2,20 +2,47 @@
   box-sizing: border-box;
 }
 
+:root {
+  --accent-text: #FAFFD4;
+}
+
+a,
+button,
+.dot,
+.orbit,
+.center {
+  -webkit-tap-highlight-color: transparent;
+}
+
+a:focus,
+button:focus,
+.dot:focus {
+  outline: none;
+}
+
+a:focus-visible,
+button:focus-visible,
+.dot:focus-visible {
+  outline: none;
+}
+
 
 
 body {
+  min-height: 100vh;
   font-family: Inter, sans-serif;
   color: black;
   font-size: 14px;
   font-weight: 300;
   line-height: 18.2px;
+  background: white;
 }
 
 .top-left a,
 .top-right a {
   color: black;
   text-decoration: none;
+  transition: color 0.15s ease;
 }
 
 .top-left a:visited,
@@ -27,7 +54,7 @@ body {
 .top-right a:hover,
 .top-left a:active,
 .top-right a:active {
-  color: black;
+  color: var(--accent-text);
   text-decoration: none;
 }
 
@@ -59,14 +86,39 @@ body {
   right: 24px;
 }
 
+.bottom-info {
+  position: fixed;
+  right: 24px;
+  bottom: 86px;
+  width: min(520px, 34vw);
+  color: black;
+  font-family: "Playfair Display SC", serif;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.35;
+  text-transform: none;
+  z-index: 4;
+  transition: opacity 0.2s ease;
+}
+
+.bottom-info p {
+  margin: 0;
+}
+
+.bottom-info p + p {
+  margin-top: 18px;
+  font-style: italic;
+}
+
 .link {
   color: inherit;
   text-decoration: none;
   cursor: pointer;
+  transition: color 0.15s ease;
 }
 
 .link:hover {
-  opacity: 0.6;
+  color: var(--accent-text);
 }
 
 /* 중앙 */
@@ -75,6 +127,8 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  background: transparent;
+  border: 0;
 }
 
 /* 점 */
@@ -88,6 +142,10 @@ body {
   border-radius: 50%;
   transform-origin: 0 0;
   cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+  border: 0;
+  outline: 0;
   transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
@@ -105,6 +163,10 @@ body {
   transform: scale(1.8);
 }
 
+.dot.is-over-text {
+  background: white;
+}
+
 .dot.dimmed {
   opacity: 0.1;
   pointer-events: none;
@@ -117,6 +179,9 @@ body {
   height: 650px;
   animation: spin 90s linear infinite;
   z-index: 3;
+  background: transparent;
+  border: 0;
+  outline: 0;
 }
 
 .orbit.dim .dot {
@@ -154,6 +219,14 @@ body {
   transition: opacity 0.4s ease;
   pointer-events: none;
   z-index: 1;
+  background: transparent;
+  border: 0;
+  outline: 0;
+}
+
+.hover-image.is-touch-active {
+  pointer-events: auto;
+  cursor: pointer;
 }
 
 /* ✅ 이미지 전용 */
@@ -195,6 +268,11 @@ body {
   font-weight: 300;
   color: inherit;
   cursor: pointer;
+  transition: color 0.15s ease;
+}
+
+.filter-btn:hover {
+  color: var(--accent-text);
 }
 
 .filter-btn.active {
@@ -217,21 +295,28 @@ body {
   position: fixed;
   left: 50%;
   top: 50%;
-  transform: translate(-50%, -50%) translateY(400px);
+  transform: translate(-50%, -50%);
+  font-family: "Playfair Display SC", serif;
   font-size: 12px;
-  letter-spacing: 0.02em;
-  text-transform: uppercase;
-  color: rgba(0,0,0,0.45);
-  font-style: italic;
-
-  opacity: 0;
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: none;
+  color: black;
+  font-style: normal;
+  opacity: 1;
   pointer-events: none;
   z-index: 99999;
+  transition: opacity 0.2s ease;
+}
+
+.center-message.is-hidden,
+.bottom-info.is-hidden {
+  opacity: 0;
 }
 
 /* hover 중일 때 깜빡 */
 .center-message.blink{
-  animation: blinkFade 1.2s ease-in-out infinite;
+  animation: none;
 }
 
 @keyframes blinkFade{

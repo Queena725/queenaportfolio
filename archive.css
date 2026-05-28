@@ -1,80 +1,78 @@
+:root {
+  --bg: #ffffff;
+  --text: #111111;
+  --muted: rgba(0, 0, 0, 0.52);
+  --line: rgba(0, 0, 0, 0.08);
+  --line-strong: rgba(0, 0, 0, 0.12);
+
+  --accent: #FAFFD4;
+  --accent-soft: rgba(250, 255, 212, 0.28);
+  --accent-text: #FAFFD4;
+  --accent-line: #FAFFD4;
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
- body{
+body {
+  padding-top: 78px;
+  background: var(--bg);
   font-family: Inter, sans-serif;
   font-size: 14px;
   font-weight: 300;
   line-height: 18.2px;
+  color: var(--text);
 }
 
+/* header */
 
-/* =========================
-   Header
-========================= */
-
-.archive-header {
+.site-header {
   position: fixed;
-  top: 24px;
-  left: 24px;
-  right: 24px;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
 
   display: flex;
   justify-content: space-between;
   align-items: center;
 
-  z-index: 1000;
+  padding: 18px 20px 10px;
+  background: #ffffff;
+  border-bottom: 1px solid var(--accent-line);
 }
 
-/* Archive title */
-.archive-header h1 {
-  margin: 0;
-  font-size: 14px;
-  color: #000;
-  font-weight: 300;
-  line-height: 18.2px;
-  letter-spacing: -0.15px;
-  text-decoration: none;
-}
-
-/* Close button */
-.close-btn {
-  font-size: 18px;
-   font-weight: 300;
-    letter-spacing: 0.02em;
-  text-decoration: none;
-  color: #000;
-  cursor: pointer;
-  line-height: 1;
-
-  background: none;
-  border: none;
-  padding: 0;
-
+.header-nav {
   display: flex;
   align-items: center;
+  gap: 18px;
 }
 
-.close-btn:hover {
-  opacity: 0.6;
+.header-link {
+  text-decoration: none;
+  color: var(--text);
+  font-size: 14px;
+  font-weight: 300;
+  transition: color 0.15s ease;
 }
 
-/* =========================
-   Grid
-========================= */
+.header-link:hover {
+  color: var(--accent-text);
+}
+
+/* grid */
+
 .archive-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 40px;
-  padding: 96px 32px 32px;
+  padding: 32px 32px 32px;
 }
 
-/* =========================
-   Items
-========================= */
+/* items */
 
 .archive-item {
   display: flex;
@@ -105,41 +103,26 @@
   transform: scale(0.85);
 }
 
-
-
 .archive-item figcaption {
   margin-top: 5px;
   text-align: center;
-
   font-size: 12px;
   font-weight: 300;
   line-height: 15px;
   color: rgba(0, 0, 0, 0.85);
 }
 
-
-
-
-.row {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  align-items: center;
-}
-
-
-
 figure {
   margin: 0;
 }
 
-/* 클릭 가능하게 */
 .archive-item img,
 .archive-item video {
   cursor: pointer;
 }
 
+/* lightbox */
 
-/* Lightbox 배경 */
 .lightbox {
   position: fixed;
   inset: 0;
@@ -150,11 +133,9 @@ figure {
   z-index: 9999;
 }
 
-/* 열렸을 때 */
 .lightbox.active {
   display: flex;
 }
-
 
 .lightbox-content img,
 .lightbox-content video {
@@ -163,12 +144,13 @@ figure {
   object-fit: contain;
 }
 
-
-/* 닫기 버튼 */
 .lightbox-close {
+  position: absolute;
+  top: 24px;
+  right: 24px;
   letter-spacing: 0.02em;
   text-decoration: none;
-  color: #0000;
+  color: #000;
   cursor: pointer;
   line-height: 1;
   background: none;
@@ -176,4 +158,10 @@ figure {
   padding: 0;
   display: flex;
   align-items: center;
+  font-size: 18px;
+  font-weight: 300;
+}
+
+.lightbox-close:hover {
+  opacity: 0.6;
 }

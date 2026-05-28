@@ -9,18 +9,26 @@ const hoverImg = document.getElementById("hoverImg");
 const hoverVideo = document.getElementById("hoverVideo");
 
 const centerMessage = document.getElementById("centerMessage");
+const bottomInfo = document.querySelector(".bottom-info");
+const textCollisionTargets = [centerMessage, bottomInfo].filter(Boolean);
 
 const filterButtons = document.querySelectorAll(".filter-btn");
 
 let activeFilter = null;
+let activePreviewUrl = "";
+const touchQuery = window.matchMedia("(hover: none), (pointer: coarse)");
+
+function isTouchMode() {
+  return touchQuery.matches;
+}
 
 // =====================
 // Helpers
 // =====================
 function showCenterMessage(text = "Click to view") {
   if (!centerMessage) return;
-  centerMessage.textContent = text;
-  centerMessage.classList.add("blink");
+  centerMessage.textContent = "Hover the dots. Click to view.";
+  centerMessage.classList.remove("blink");
 }
 
 function hideCenterMessage() {
@@ -39,91 +47,148 @@ function getDotType(dot) {
   return (dot.dataset.type || "image").trim();
 }
 
+function setIntroTextHidden(isHidden) {
+  if (centerMessage) centerMessage.classList.toggle("is-hidden", isHidden);
+  if (bottomInfo) bottomInfo.classList.toggle("is-hidden", isHidden);
+}
+
+function rectsOverlap(firstRect, secondRect) {
+  return !(
+    firstRect.right < secondRect.left ||
+    firstRect.left > secondRect.right ||
+    firstRect.bottom < secondRect.top ||
+    firstRect.top > secondRect.bottom
+  );
+}
+
+function updateDotTextContrast() {
+  if (!textCollisionTargets.length) return;
+
+  const targetRects = textCollisionTargets.map((target) => target.getBoundingClientRect());
+
+  dots.forEach((dot) => {
+    const dotRect = dot.getBoundingClientRect();
+    const isOverText = targetRects.some((targetRect) => rectsOverlap(dotRect, targetRect));
+
+    dot.classList.toggle("is-over-text", isOverText);
+  });
+
+  window.requestAnimationFrame(updateDotTextContrast);
+}
+
+function showDotPreview(dot) {
+  if (orbit) orbit.classList.add("dim");
+  dot.classList.add("active");
+
+  const src = getDotSrc(dot);
+  const type = getDotType(dot);
+
+  if (!src) {
+    if (hoverImage) {
+      hoverImage.style.opacity = "0";
+      hoverImage.classList.remove("is-touch-active");
+    }
+    activePreviewUrl = "";
+    setIntroTextHidden(false);
+    hideCenterMessage();
+    return;
+  }
+
+  activePreviewUrl = dot.getAttribute("href") || "";
+
+  if (hoverImage) {
+    hoverImage.style.opacity = "1";
+    hoverImage.classList.toggle("is-touch-active", isTouchMode());
+  }
+
+  showCenterMessage();
+  setIntroTextHidden(true);
+
+  if (type === "video") {
+    if (hoverImg) hoverImg.style.display = "none";
+
+    if (hoverVideo) {
+      hoverVideo.src = src;
+      hoverVideo.style.display = "block";
+      hoverVideo.style.width = "75vw";
+      hoverVideo.style.maxWidth = "1000px";
+
+      if (dot.getAttribute("href") === "pigma.html") {
+        hoverVideo.style.width = "50vw";
+        hoverVideo.style.maxWidth = "650px";
+      }
+
+      const p = hoverVideo.play();
+      if (p && typeof p.catch === "function") p.catch(() => {});
+    }
+  } else {
+    if (hoverVideo) {
+      hoverVideo.pause();
+      hoverVideo.style.display = "none";
+    }
+
+    if (hoverImg) {
+      hoverImg.src = src;
+      hoverImg.style.display = "block";
+    }
+  }
+}
+
+function resetDotPreview(dot) {
+  if (orbit) orbit.classList.remove("dim");
+  dot.classList.remove("active");
+
+  if (hoverImage) {
+    hoverImage.style.opacity = "0";
+    hoverImage.classList.remove("is-touch-active");
+  }
+  hideCenterMessage();
+  setIntroTextHidden(false);
+
+  if (hoverVideo) {
+    hoverVideo.pause();
+    hoverVideo.style.display = "none";
+    hoverVideo.style.width = "75vw";
+    hoverVideo.style.maxWidth = "1000px";
+  }
+}
+
 // =====================
 // HOVER (Image/Video preview + message)
 // =====================
 dots.forEach((dot) => {
   dot.addEventListener("mouseenter", () => {
-    if (orbit) orbit.classList.add("dim");
-    dot.classList.add("active");
-
-    const src = getDotSrc(dot);
-    const type = getDotType(dot);
-
-    // If no preview source, don't show preview/message
-    if (!src) {
-      if (hoverImage) hoverImage.style.opacity = "0";
-      hideCenterMessage();
-      return;
-    }
-
-    // Show preview container
-    if (hoverImage) hoverImage.style.opacity = "1";
-
-    // Center message text
-    const isComing = dot.dataset.coming === "true";
-    showCenterMessage(isComing ? "Coming soon" : "Click to view");
-
-    if (type === "video") {
-      // Video mode
-      if (hoverImg) hoverImg.style.display = "none";
-
-      if (hoverVideo) {
-        hoverVideo.src = src;
-        hoverVideo.style.display = "block";
-
-        // Default video size
-        hoverVideo.style.width = "75vw";
-        hoverVideo.style.maxWidth = "1000px";
-
-        // pigma special case
-        if (dot.getAttribute("href") === "pigma.html") {
-          hoverVideo.style.width = "50vw";
-          hoverVideo.style.maxWidth = "650px";
-        }
-
-        // play (ignore autoplay errors)
-        const p = hoverVideo.play();
-        if (p && typeof p.catch === "function") p.catch(() => {});
-      }
-    } else {
-      // Image mode
-      if (hoverVideo) {
-        hoverVideo.pause();
-        hoverVideo.style.display = "none";
-      }
-      if (hoverImg) {
-        hoverImg.src = src;
-        hoverImg.style.display = "block";
-      }
-    }
+    if (isTouchMode()) return;
+    showDotPreview(dot);
   });
 
   dot.addEventListener("mouseleave", () => {
-    if (orbit) orbit.classList.remove("dim");
-    dot.classList.remove("active");
-
-    if (hoverImage) hoverImage.style.opacity = "0";
-    hideCenterMessage();
-
-    // Reset video safely
-    if (hoverVideo) {
-      hoverVideo.pause();
-      hoverVideo.style.display = "none";
-
-      // restore defaults
-      hoverVideo.style.width = "75vw";
-      hoverVideo.style.maxWidth = "1000px";
-    }
+    if (isTouchMode()) return;
+    resetDotPreview(dot);
   });
 
   // Optional: block click for coming soon dots
   dot.addEventListener("click", (e) => {
     if (dot.dataset.coming === "true") {
       e.preventDefault();
+      return;
+    }
+
+    if (isTouchMode()) {
+      e.preventDefault();
+      showDotPreview(dot);
     }
   });
 });
+
+if (hoverImage) {
+  hoverImage.addEventListener("click", () => {
+    if (!isTouchMode() || !activePreviewUrl) return;
+    window.location.href = activePreviewUrl;
+  });
+}
+
+window.requestAnimationFrame(updateDotTextContrast);
 
 // =====================
 // FILTER
@@ -183,4 +248,3 @@ if (cursorDot) {
     }
   });
 }
-
