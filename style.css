@@ -136,8 +136,8 @@ body {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 14px;
-  height: 14px;
+  width: 12px;
+  height: 12px;
   background: black;
   border-radius: 50%;
   transform-origin: 0 0;
@@ -199,14 +199,16 @@ body {
 
 /* dot 위치 */
 .dot:nth-child(1) { transform: rotate(0deg) translateX(280px); }
-.dot:nth-child(2) { transform: rotate(40deg) translateX(280px); }
-.dot:nth-child(3) { transform: rotate(80deg) translateX(280px); }
-.dot:nth-child(4) { transform: rotate(120deg) translateX(280px); }
-.dot:nth-child(5) { transform: rotate(160deg) translateX(280px); }
-.dot:nth-child(6) { transform: rotate(200deg) translateX(280px); }
-.dot:nth-child(7) { transform: rotate(240deg) translateX(280px); }
-.dot:nth-child(8) { transform: rotate(280deg) translateX(280px); }
-.dot:nth-child(9) { transform: rotate(320deg) translateX(280px); }
+.dot:nth-child(2) { transform: rotate(32.7deg) translateX(280px); }
+.dot:nth-child(3) { transform: rotate(65.4deg) translateX(280px); }
+.dot:nth-child(4) { transform: rotate(98.1deg) translateX(280px); }
+.dot:nth-child(5) { transform: rotate(130.8deg) translateX(280px); }
+.dot:nth-child(6) { transform: rotate(163.5deg) translateX(280px); }
+.dot:nth-child(7) { transform: rotate(196.2deg) translateX(280px); }
+.dot:nth-child(8) { transform: rotate(228.9deg) translateX(280px); }
+.dot:nth-child(9) { transform: rotate(261.6deg) translateX(280px); }
+.dot:nth-child(10) { transform: rotate(294.3deg) translateX(280px); }
+.dot:nth-child(11) { transform: rotate(327deg) translateX(280px); }
 
 /* ============================= */
 /* ✅ Hover Image 영역 */
