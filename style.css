@@ -98,7 +98,11 @@ body {
   line-height: 1.35;
   text-transform: none;
   z-index: 4;
-  transition: opacity 0.2s ease;
+  transition: color 0.2s ease, opacity 0.2s ease;
+}
+
+.bottom-info:hover {
+  color: var(--accent-text);
 }
 
 .bottom-info p {
@@ -307,13 +311,17 @@ body {
   color: black;
   font-style: normal;
   opacity: 1;
-  pointer-events: none;
+  pointer-events: auto;
   z-index: 99999;
   transition: color 0.4s ease, opacity 0.2s ease;
 }
 
 .center-message.is-accent {
   color: var(--accent-text);
+}
+
+.center-message.is-accent:hover {
+  color: black;
 }
 
 .center-message.is-hidden,
